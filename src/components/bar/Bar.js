@@ -32,12 +32,12 @@ function Bar() {
         <ul>
           <li>
             <Link to="" onClick={goToHome}>
-              Home
+              Past Matches
             </Link>
           </li>
           <li>
             <Link to="" onClick={goToLive}>
-              Live
+              Live Matches
             </Link>
           </li>
           {

@@ -30,7 +30,7 @@ function Login(props) {
       .then(() => {
         if (localStorage.getItem("Authorization") !== null || localStorage.getItem("Authorization") !== "undefined") {
           
-          window.location.href = "./matches";
+          window.location.href = "./live";
         } else {
           alert("Wrong username or password");
           window.location.href = "./login";

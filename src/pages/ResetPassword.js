@@ -1,7 +1,5 @@
 import { useState } from "react";
-const CHANGE_PASSWORD_API = "http://localhost:8080/users/resetPassword";
-//const CHANGE_PASSWORD_API = process.env.REACT_APP_SERVER_HOSTNAME + "/users/resetPassword";
-
+const RESET_PASSWORD_API = `${process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080'}/resetPassword`;
 
 function ResetPassword() {
   const [token, setToken] = useState("");
@@ -13,15 +11,13 @@ function ResetPassword() {
       newPassword: newPassword,
     };
 
-    fetch(CHANGE_PASSWORD_API, {
+    fetch(RESET_PASSWORD_API, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(requestBody),
     }).then((response) => response.json());
-    setToken("");
-    setNewPassword("");
     goToLogin();
     alert("Success");
   }

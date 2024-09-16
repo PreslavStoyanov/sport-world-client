@@ -1,24 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-const CHANGE_PASSWORD_API = "http://localhost:8080/users/forgotPassword";
-//const CHANGE_PASSWORD_API = process.env.REACT_APP_SERVER_HOSTNAME + "/users/forgotPassword";
+import {useState} from "react";
+import {Link} from "react-router-dom";
+
+const FORGOT_PASSWORD_API = `${process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080'}/forgotPassword`;
 
 function ForgotPassword() {
   const [username, setUsername] = useState("");
 
-  async function sentChangeRequest() {
-    const requestBody = {
-      username: username,
-    };
-
-    fetch(CHANGE_PASSWORD_API, {
+  async function sentForgotPasswordRequest() {
+    fetch(FORGOT_PASSWORD_API, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify(requestBody),
+      body: username,
     }).then((response) => response.json());
-    //setUsername("");
     goToResetPassword();
     alert("Check your email");
   }
@@ -44,12 +39,12 @@ function ForgotPassword() {
           onChange={(response) => {
             setUsername(response.target.value);
           }}
-          
+
         />
         <br />
         <br />
         <br />
-        <button className="btn" onClick={sentChangeRequest}>
+        <button className="btn" onClick={sentForgotPasswordRequest}>
           Change
         </button>
         <br />

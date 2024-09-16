@@ -38,12 +38,11 @@ export default class LiveMatches extends Component {
         <div className="match-box">
           {this.state.games &&
             this.state.games.map((game, ind) => (
-              <div className="live-match" ckey={game.id}>
-                {game.tournament.name} - {game.tournament.category.name}                <br />
-                {game.homeTeam.shortName} {game.homeScore.current} -
-                {game.awayScore.current} {game.awayTeam.shortName} <br />
-                <br />
-              </div>
+                <div className="live-match" ckey={game.id}>
+                    {game.tournament.name} {/*- {game.tournament.category.name}*/} <br/>
+                    {game.homeTeam.shortName} VS {game.awayTeam.shortName} <br/>
+                    {game.homeScore.current}-{game.awayScore.current}
+                </div>
             ))}
         </div>
       </div>

@@ -2,19 +2,18 @@
 import { useState } from "react";
 //import { Link } from "react-router-dom";
 
-const CHANGE_PASSWORD_API = "http://localhost:8080/users/changePassword";
-//const CHANGE_PASSWORD_API = process.env.REACT_APP_SERVER_HOSTNAME + "/users/changePassword";
+const CHANGE_PASSWORD_API = `${process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080'}/users/changePassword`;
 
-function ChangePassword(response) {
+function ChangePassword() {
   const [username, setUsername] = useState("");
   const [oldPassword, setOldPassword] = useState("");
-  const [newPassowrd, setNewPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   async function sentChangeRequest() {
     const requestBody = {
       username: username,
       oldPassword: oldPassword,
-      newPassowrd: newPassowrd,
+      newPassword: newPassword,
     };
 
     fetch(CHANGE_PASSWORD_API, {
@@ -25,33 +24,10 @@ function ChangePassword(response) {
       method: "POST",
       body: JSON.stringify(requestBody),
     }).then((response) => response.json());
-    setUsername("");
-    setOldPassword("");
-    setNewPassword("");
 
     window.location.reload(true);
     window.location.href = "./matches";
   }
-
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   try {
-  //     await axios.post(CHANGE_PASSWORD_API, {
-  //       username: username,
-  //       oldPassword: oldPassword,
-  //       newPassowrd: newPassowrd,
-  //     });
-  //     alert("Password changed successfully");
-  //     setUsername("");
-  //     setOldPassword("");
-  //     setNewPassword("");
-
-  //     window.location.reload(true);
-  //     window.location.href = "./matches";
-  //   } catch (err) {
-  //     alert("Wrong credentials");
-  //   }
-  // }
 
   return (
     <div id="box">

@@ -23,12 +23,14 @@ class Home extends React.Component {
   render() {
     return (
       <div className="matches-box">
-        <h1>Matches</h1>
+        <h1>Past Matches</h1>
         <hr className="bar"/>
         <br />
         {this.state.matches.map((match) => (
           <div className="match" onClick={() => this.openMatch(match.id)}>
-            <div key={match.id}>{match.league.name} - {match.title}</div>
+            <div key={match.id}>{match.league.name}</div>
+            <div key={match.id}>{match.title}</div>
+            <div key={match.id}>{match.content}</div>
           </div>
         ))}
       </div>
