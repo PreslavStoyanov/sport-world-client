@@ -1,5 +1,5 @@
-import { useState } from "react";
-const RESET_PASSWORD_API = `${process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080'}/resetPassword`;
+import {useState} from "react";
+import {API_URLS} from "../config";
 
 function ResetPassword() {
   const [token, setToken] = useState("");
@@ -11,7 +11,7 @@ function ResetPassword() {
       newPassword: newPassword,
     };
 
-    fetch(RESET_PASSWORD_API, {
+    fetch(API_URLS.RESET_PASSWORD, {
       headers: {
         "Content-Type": "application/json",
       },

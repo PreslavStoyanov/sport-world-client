@@ -1,10 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
-const LOGIN_URL = "http://localhost:8080/login";
-//const LOGIN_URL = process.env.REACT_APP_SERVER_HOSTNAME + "/login";
-
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
+import {API_URLS} from '../config';
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -15,7 +11,7 @@ function Login(props) {
       username: username,
       password: password,
     };
-    fetch(LOGIN_URL, {
+    fetch(API_URLS.LOGIN, {
       headers: {
         "Content-Type": "application/json",
       },

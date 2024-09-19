@@ -1,8 +1,5 @@
-//import axios from "axios";
-import { useState } from "react";
-//import { Link } from "react-router-dom";
-
-const CHANGE_PASSWORD_API = `${process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080'}/users/changePassword`;
+import {useState} from "react";
+import {API_URLS} from "../config";
 
 function ChangePassword() {
   const [username, setUsername] = useState("");
@@ -16,7 +13,7 @@ function ChangePassword() {
       newPassword: newPassword,
     };
 
-    fetch(CHANGE_PASSWORD_API, {
+    fetch(API_URLS.CHANGE_PASSWORD, {
       headers: {
         Authorization: localStorage.getItem("Authorization"),
         "Content-Type": "application/json",

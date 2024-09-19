@@ -1,9 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
-const REGISTER_USER = "http://localhost:8080/register";
-//const REGISTER_USER = process.env.REACT_APP_SERVER_HOSTNAME + "/register";
+import {useState} from "react";
+import {Link} from "react-router-dom";
+import {API_URLS} from '../config';
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -13,7 +11,7 @@ function Register() {
   async function handleSubmit(response) {
     response.preventDefault();
     try {
-      await axios.post(REGISTER_USER, {
+      await axios.post(API_URLS.REGISTER, {
         username: username,
         password: password,
         email: email

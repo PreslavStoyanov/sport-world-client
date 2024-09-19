@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
+import {API_URLS} from "../../config";
+
 let axios = require("axios").default;
 
-const FEATURED_SCORE_API_URL = "http://localhost:8080/matches/featured";
-//const FEATURED_SCORE_API_URL = process.env.REACT_APP_SERVER_HOSTNAME + "/matches/featured";
-
-export default class FeturedMatches extends Component {
+export default class FeaturedMatches extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +19,7 @@ export default class FeturedMatches extends Component {
   }
 
   getLiveGames() {
-    return axios.get(FEATURED_SCORE_API_URL, {
+    return axios.get(API_URLS.LIST_FEATURED_MATCHES, {
       headers: {
         authority: "api.sofascore.com",
         "cache-control": "max-age=0",
@@ -39,7 +38,7 @@ export default class FeturedMatches extends Component {
               <div className="match" ckey={game.id}>
                 {game.tournament.name}
                 <br />
-                {game.homeTeam.shortName} {game.homeScore.current} - 
+                {game.homeTeam.shortName} {game.homeScore.current} -
                 {game.awayScore.current} {game.awayTeam.shortName} <br />
                 <br />
               </div>

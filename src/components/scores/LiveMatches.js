@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
+import {API_URLS} from "../../config";
+
 let axios = require("axios").default;
-const LIVE_SCORE_API_URL = "http://localhost:8080/matches/live";
-//const LIVE_SCORE_API_URL = process.env.REACT_APP_SERVER_HOSTNAME + "/matches/live";
 
 export default class LiveMatches extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class LiveMatches extends Component {
   }
 
   getLiveGames() {
-    return axios.get(LIVE_SCORE_API_URL, {
+      return axios.get(API_URLS.LIST_LIVE_MATCHES, {
       headers: {
         "Authorization": localStorage.getItem("Authorization")
       },

@@ -1,13 +1,12 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-
-const FORGOT_PASSWORD_API = `${process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080'}/forgotPassword`;
+import {API_URLS} from '../config';
 
 function ForgotPassword() {
   const [username, setUsername] = useState("");
 
   async function sentForgotPasswordRequest() {
-    fetch(FORGOT_PASSWORD_API, {
+    fetch(API_URLS.FORGOT_PASSWORD, {
       headers: {
         "Content-Type": "application/json",
       },

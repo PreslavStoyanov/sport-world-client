@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import CommentsService from "../../services/CommentsService";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
-
-const CREATE_COMMENT = "http://localhost:8080/comments";
-//const CREATE_COMMENT = process.env.REACT_APP_SERVER_HOSTNAME + "/comments";
+import {COMMENTS_URL} from "../../config";
 
 const Comments = () => {
   const [comments, setComments] = useState([]);
@@ -17,7 +15,7 @@ const Comments = () => {
       matchID: matchID,
     };
   
-    fetch(CREATE_COMMENT, {
+    fetch(COMMENTS_URL, {
       headers: {
         Authorization: localStorage.getItem("Authorization"),
         "Content-Type": "application/json",

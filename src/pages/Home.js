@@ -1,7 +1,6 @@
 import React from "react";
 import MatchService from "../services/MatchService";
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +10,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    MatchService.listMaches().then((response) => {
+    MatchService.listMatches().then((response) => {
       this.setState({ matches: response.data });
     });
   }
