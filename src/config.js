@@ -10,7 +10,6 @@ export const API_URLS = {
     GET_MATCH: `${SERVER_HOSTNAME}` + window.location.pathname,
     LIST_PAST_MATCHES: `${MATCHES_URL}?page=0&pageSize=40`,
     LIST_LIVE_MATCHES: `${MATCHES_URL}/live`,
-    LIST_FEATURED_MATCHES: `${MATCHES_URL}/featured`,
     LIST_MATCH_COMMENTS: `${COMMENTS_URL}` + window.location.pathname,
     FORGOT_PASSWORD: `${SERVER_HOSTNAME}/forgotPassword`,
     RESET_PASSWORD: `${SERVER_HOSTNAME}/resetPassword`,
