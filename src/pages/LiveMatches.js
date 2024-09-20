@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {API_URLS} from "../../config";
+import {API_URLS} from "../config";
 
 let axios = require("axios").default;
 

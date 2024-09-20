@@ -9,7 +9,7 @@ import Signout from "./pages/Signout";
 import User from "./pages/User";
 import ChangePassword from "./pages/ChangePassword";
 import Comments from "./components/comments/Comments";
-import LiveMatches from "./components/scores/LiveMatches";
+import LiveMatches from "./pages/LiveMatches";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
