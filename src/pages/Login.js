@@ -1,10 +1,11 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {API_URLS} from '../config';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { API_URLS } from '../config';
 
-function Login(props) {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   function sendLoginRequest() {
     const requestBody = {
@@ -21,69 +22,52 @@ function Login(props) {
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem("Authorization", data.token);
-        
       })
       .then(() => {
         if (localStorage.getItem("Authorization") !== null || localStorage.getItem("Authorization") !== "undefined") {
-          
-          window.location.href = "./live";
+          navigate("/live");
         } else {
           alert("Wrong username or password");
-          window.location.href = "./login";
         }
       });
   }
 
-  function goToRegisterPage() {
-    window.location.href = "./register";
-  }
-
-  function goToForgotPassword() {
-    window.location.href = "./forgotPassword"
-  }
-
   return (
-      <div id="box">
-        <form className="form" onSubmit={(response) => response.preventDefault()}>
-          <br />
-          <h1>Welcome Back!</h1>
-          <h3>Username</h3>
-          <input
-            className="input"
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            placeholder="Enter username..."
-            onChange={(response) => setUsername(response.target.value)}
-          ></input>
-          <h3>Password</h3>
-          <input
-            className="input"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            placeholder="Enter password..."
-            onChange={(response) => setPassword(response.target.value)}
-          ></input>
-          <br />
-          <br />
-          <button className="btn" onClick={sendLoginRequest}>
-            Login
-          </button>
-          <br />
-          <br />
-          <hr className="bar"></hr>
-          <br />
-          <Link to="" onClick={goToRegisterPage}>Don't have an account?</Link>
-          <br />
-          <br />
-          <hr className="bar"></hr>
-          <br />
-          <Link to="" onClick={goToForgotPassword}>Forgot password?</Link>
-        </form>
-      </div>
+    <div id="box">
+      <form className="form" onSubmit={(e) => e.preventDefault()}>
+        <br />
+        <h1>Welcome Back!</h1>
+        <h3>Username</h3>
+        <input
+          className="input"
+          type="text"
+          value={username}
+          placeholder="Enter username..."
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <h3>Password</h3>
+        <input
+          className="input"
+          type="password"
+          value={password}
+          placeholder="Enter password..."
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <br />
+        <button className="btn" onClick={sendLoginRequest}>Login</button>
+        <br />
+        <br />
+        <hr className="bar"></hr>
+        <br />
+        <Link to="/register">Don't have an account?</Link>
+        <br />
+        <br />
+        <hr className="bar"></hr>
+        <br />
+        <Link to="/forgotPassword">Forgot password?</Link>
+      </form>
+    </div>
   );
 }
 

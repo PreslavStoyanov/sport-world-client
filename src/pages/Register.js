@@ -1,12 +1,13 @@
 import axios from "axios";
-import {useState} from "react";
-import {Link} from "react-router-dom";
-import {API_URLS} from '../config';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { API_URLS } from '../config';
 
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(response) {
     response.preventDefault();
@@ -21,15 +22,11 @@ function Register() {
       setPassword("");
       setEmail("");
 
-      window.location.reload(true);
-      window.location.href = "./login";
-    } catch (err) {
-      alert(err);
-    }
-  }
+      navigate("/login");
 
-  function goToLoginPage() {
-    window.location.href = "./login";
+    } catch (err) {
+      alert("Error during registration: " + err.message);
+    }
   }
 
   return (
@@ -43,9 +40,8 @@ function Register() {
           type="text"
           name="username"
           placeholder="Enter username..."
-          onChange={(response) => {
-            setUsername(response.target.value);
-          }}
+          value={username}
+          onChange={(response) => setUsername(response.target.value)}
         />
         <br />
         <h3>Password</h3>
@@ -54,9 +50,8 @@ function Register() {
           type="password"
           name="password"
           placeholder="Enter password..."
-          onChange={(response) => {
-            setPassword(response.target.value);
-          }}
+          value={password}
+          onChange={(response) => setPassword(response.target.value)}
         />
         <br />
         <h3>Email</h3>
@@ -65,21 +60,16 @@ function Register() {
           type="text"
           name="email"
           placeholder="Enter email..."
-          onChange={(response) => {
-            setEmail(response.target.value);
-          }}
+          value={email}
+          onChange={(response) => setEmail(response.target.value)}
         />
-        <br />
-        <br />
-        <button className="btn" type="submit">
-          Register
-        </button>
-        <br />
-        <br />
-        <hr className="bar"></hr>
-        <br />
-        <Link to="" onClick={goToLoginPage}>Have an account?</Link>
+        <br /> <br />
+        <button className="btn" type="submit">Register</button>
+        <br /> <br /> <hr className="bar"></hr> <br />
+        <Link to="/login">Have an account?</Link>
       </form>
     </div>
   );
-} export default Register;
+}
+
+export default Register;

@@ -1,9 +1,9 @@
 import axios from "axios";
-import {API_URLS} from "../config";
+import { API_URLS } from "../config";
 
 class CommentsService {
-  listCommentsByMach() {
-    return axios.get(API_URLS.LIST_MATCH_COMMENTS, {
+  listCommentsByMach(matchId) {
+    return axios.get(API_URLS.LIST_MATCH_COMMENTS + `/${matchId}`, {
       headers: {
         Authorization: localStorage.getItem("Authorization"),
       },

@@ -1,26 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Signout() {
-  function goToLogin() {
-    localStorage.removeItem("Authorization");
-    window.location.href = "./login";
-  }
-  function goToHome() {
-    window.location.href = "./matches";
-  }
+    const navigate = useNavigate();
 
-  return (
-    <div id="box">
-      <h2>Are you sure?</h2>
+    function handleSignOut() {
+        localStorage.removeItem("Authorization");
+        navigate("/login");
+    }
 
-      <button className="signout-btn" onClick={goToLogin}>
-        Yes
-      </button>
-      <br />
-      <button className="signout-btn" onClick={goToHome}>
-        No
-      </button>
-    </div>
-  );
+    function stayOnPage() {
+        navigate("/matches");
+    }
+
+    return (
+        <div id="box">
+            <h2>Are you sure you want to sign out?</h2>
+
+            <button className="signout-btn" onClick={handleSignOut}>
+                Yes
+            </button>
+            <br />
+            <button className="signout-btn" onClick={stayOnPage}>
+                No
+            </button>
+        </div>
+    );
 }
+
 export default Signout;

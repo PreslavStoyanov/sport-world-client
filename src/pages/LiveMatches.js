@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {API_URLS} from "../config";
+import React, { Component } from "react";
+import { API_URLS } from "../config";
 
 let axios = require("axios").default;
 
@@ -20,7 +20,7 @@ export default class LiveMatches extends Component {
   }
 
   getLiveGames() {
-      return axios.get(API_URLS.LIST_LIVE_MATCHES, {
+    return axios.get(API_URLS.LIST_LIVE_MATCHES, {
       headers: {
         "Authorization": localStorage.getItem("Authorization")
       },
@@ -38,11 +38,11 @@ export default class LiveMatches extends Component {
         <div className="match-box">
           {this.state.games &&
             this.state.games.map((game, ind) => (
-                <div className="live-match" ckey={game.id}>
-                    {game.tournament.name} {/*- {game.tournament.category.name}*/} <br/>
-                    {game.homeTeam.shortName} VS {game.awayTeam.shortName} <br/>
-                    {game.homeScore.current}-{game.awayScore.current}
-                </div>
+              <div className="live-match" ckey={game.id}>
+                {game.tournament.name} {/*- {game.tournament.category.name}*/} <br />
+                {game.homeTeam.shortName} VS {game.awayTeam.shortName} <br />
+                {game.homeScore.current}-{game.awayScore.current}
+              </div>
             ))}
         </div>
       </div>

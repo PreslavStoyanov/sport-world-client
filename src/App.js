@@ -1,4 +1,4 @@
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -16,71 +16,60 @@ import ResetPassword from "./pages/ResetPassword";
 function App() {
   return (
     <div>
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-        <Route exact path="/matches">
-          <Logo />
-          <Bar />
-          <Home />
-        </Route>
+        <Route path="/matches" element={
+          <>
+            <Logo />
+            <Bar />
+            <Home />
+          </>
+        } />
 
-        <Route path="/register">
-          <Register />
-        </Route>
+        <Route path="/matches/:id" element={
+          <>
+            <Logo />
+            <Bar />
+            <div id="box">
+              <Match />
+              <hr className="bar" />
+              <Comments />
+            </div>
+          </>
+        } />
 
-        <Route path="/login">
-          <Login />
-        </Route>
+        <Route path="/live" element={
+          <>
+            <Logo />
+            <Bar />
+            <LiveMatches />
+          </>
+        } />
 
-        <Route path={"/matches/:id"}>
-          <Logo />
-          <Bar />
-          <div id="box">
-            <Match />
-            <hr className="bar" />
-            <Comments />
-          </div>
-        </Route>
+        <Route path="/users" element={
+          <>
+            <Logo />
+            <Bar />
+            <User />
+          </>
+        } />
 
-        <Route path={"/live"}>
-          <Logo />
-          <Bar />
-          <LiveMatches />
-        </Route>
+        <Route path="/changePassword" element={
+          <>
+            <Logo />
+            <Bar />
+            <ChangePassword />
+          </>
+        } />
 
-        <Route path="/users">
-          <Logo />
-          <Bar />
-          <User />
-        </Route>
-
-        <Route path="/changePassword">
-          <Logo />
-          <Bar />
-          <ChangePassword />
-        </Route>
-
-        <Route path="/forgotPassword">
-          <ForgotPassword />
-        </Route>
-
-        <Route path="/resetPassword">
-          <ResetPassword />
-        </Route>
-
-        <Route path="/signout">
-          <Signout />
-        </Route>
-
-        <Route path="*">
-          <div>
-            <h2>404 Page Not Found</h2>
-          </div>
-        </Route>
-      </Switch>
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/signout" element={<Signout />} />
+        <Route path="*" element={<h2>404 Page Not Found</h2>} />
+      </Routes>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import MatchService from "../services/MatchService";
 
 class Home extends React.Component {
@@ -15,21 +16,25 @@ class Home extends React.Component {
     });
   }
 
-  openMatch(props) {
-    window.location.href = "./matches/" + props;
+  openMatch(matchId) {
+    this.props.navigate(`/matches/` + matchId);
   }
-  
+
   render() {
     return (
       <div className="matches-box">
         <h1>Past Matches</h1>
-        <hr className="bar"/>
+        <hr className="bar" />
         <br />
         {this.state.matches.map((match) => (
-          <div className="match" onClick={() => this.openMatch(match.id)}>
-            <div key={match.id}>{match.league.name}</div>
-            <div key={match.id}>{match.title}</div>
-            <div key={match.id}>{match.content}</div>
+          <div
+            className="match"
+            key={match.id}
+            onClick={() => this.openMatch(match.id)}
+          >
+            <div>{match.league.name}</div>
+            <div>{match.title}</div>
+            <div>{match.content}</div>
           </div>
         ))}
       </div>
@@ -37,4 +42,9 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const HomeWithNavigate = (props) => {
+  const navigate = useNavigate();
+  return <Home {...props} navigate={navigate} />;
+};
+
+export default HomeWithNavigate;

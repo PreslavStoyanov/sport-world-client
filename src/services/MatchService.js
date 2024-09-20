@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_URLS} from "../config";
+import { API_URLS, MATCHES_URL } from "../config";
 
 class MatchService {
   listMatches() {
@@ -10,8 +10,8 @@ class MatchService {
     });
   }
 
-  getMatch() {
-    return axios.get(API_URLS.GET_MATCH, {
+  getMatch(id) {
+    return axios.get(MATCHES_URL + `/${id}`, {
       headers: {
         Authorization: localStorage.getItem("Authorization"),
       },
