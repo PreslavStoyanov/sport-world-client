@@ -1,4 +1,4 @@
-const SERVER_HOSTNAME = process.env.REACT_APP_SERVER_HOSTNAME || 'http://localhost:8080';
+const SERVER_HOSTNAME = 'http://localhost:8080';
 export const COMMENTS_URL = `${SERVER_HOSTNAME}/comments`
 export const MATCHES_URL = `${SERVER_HOSTNAME}/matches`
 export const USERS_URL = `${SERVER_HOSTNAME}/users`
