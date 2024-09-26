@@ -28,7 +28,7 @@ function ChangePassword() {
 
       if (response.ok) {
         alert("Password changed successfully!");
-        navigate("/live");
+        navigate("/football/live");
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Failed to change password.");

@@ -9,7 +9,10 @@ import Signout from "./pages/Signout";
 import User from "./pages/User";
 import ChangePassword from "./pages/ChangePassword";
 import Comments from "./components/comments/Comments";
-import LiveMatches from "./pages/LiveMatches";
+import LiveFootballMatches from "./pages/LiveFootballMatches";
+import LiveBasketballMatches from "./pages/LiveBasketballMatches";
+import LiveTennisMatches from "./pages/LiveTennisMatches";
+import LiveVolleyballMatches from "./pages/LiveVolleyballMatches";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
@@ -41,11 +44,35 @@ function App() {
           </>
         } />
 
-        <Route path="/live" element={
+        <Route path="/football/live" element={
           <>
             <Logo />
             <Bar />
-            <LiveMatches />
+            <LiveFootballMatches />
+          </>
+        } />
+
+        <Route path="/basketball/live" element={
+          <>
+            <Logo />
+            <Bar />
+            <LiveBasketballMatches />
+          </>
+        } />
+
+        <Route path="/tennis/live" element={
+          <>
+            <Logo />
+            <Bar />
+            <LiveTennisMatches />
+          </>
+        } />
+
+        <Route path="/volleyball/live" element={
+          <>
+            <Logo />
+            <Bar />
+            <LiveVolleyballMatches />
           </>
         } />
 

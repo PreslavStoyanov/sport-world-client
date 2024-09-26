@@ -25,7 +25,7 @@ function Login() {
       })
       .then(() => {
         if (localStorage.getItem("Authorization") !== null || localStorage.getItem("Authorization") !== "undefined") {
-          navigate("/live");
+          navigate("/football/live");
         } else {
           alert("Wrong username or password");
         }

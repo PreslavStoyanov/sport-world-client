@@ -3,7 +3,7 @@ import { API_URLS } from "../config";
 
 let axios = require("axios").default;
 
-export default class LiveMatches extends Component {
+export default class LiveFootballMatches extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ export default class LiveMatches extends Component {
   }
 
   getLiveGames() {
-    return axios.get(API_URLS.LIST_LIVE_MATCHES, {
+    return axios.get(API_URLS.LIST_LIVE_TENNIS_MATCHES, {
       headers: {
         "Authorization": localStorage.getItem("Authorization")
       },
@@ -36,14 +36,17 @@ export default class LiveMatches extends Component {
         <hr className="live-match-bar" />
         <br />
         <div className="match-box">
-          {this.state.games &&
+            {this.state.games && this.state.games.length > 0 ? (
             this.state.games.map((game, ind) => (
               <div className="live-match" ckey={game.id}>
                 {game.tournament.name} {/*- {game.tournament.category.name}*/} <br />
-                {game.homeTeam.shortName} VS {game.awayTeam.shortName} <br />
-                {game.homeScore.current}-{game.awayScore.current}
+                {game.homeScore.point} | {game.homeScore.period3 || game.homeScore.period2 || game.homeScore.period1} | {game.homeScore.current} | {game.homeTeam.shortName}<br />
+                {game.awayScore.point} | {game.awayScore.period3 || game.awayScore.period2 || game.awayScore.period1} | {game.awayScore.current} | {game.awayTeam.shortName}<br />
               </div>
-            ))}
+            ))
+              ) : (
+              <div className="no-events">There are no live events at the moment</div>
+              )}
         </div>
       </div>
     );

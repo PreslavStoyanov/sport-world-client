@@ -1,0 +1,55 @@
+import React, { Component } from "react";
+import { API_URLS } from "../config";
+import matches from "./matches.css";
+
+let axios = require("axios").default;
+
+export default class LiveFootballMatches extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      games: [],
+    };
+  }
+
+  componentDidMount() {
+    this.getLiveGames().then((response) => {
+      this.setState({
+        games: response.data.events,
+      });
+    });
+  }
+
+  getLiveGames() {
+    return axios.get(API_URLS.LIST_LIVE_VOLLEYBALL_MATCHES, {
+      headers: {
+        "Authorization": localStorage.getItem("Authorization")
+      },
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <br />
+        <br />
+        <h1 className="header">Live Matches</h1>
+        <hr className="live-match-bar" />
+        <br />
+        <div className="match-box">
+            {this.state.games && this.state.games.length > 0 ? (
+            this.state.games.map((game, ind) => (
+              <div className="live-match" ckey={game.id}>
+                {game.tournament.name} {/*- {game.tournament.category.name}*/} <br />
+                {game.homeTeam.shortName} VS {game.awayTeam.shortName} <br />
+                {game.homeScore.current}-{game.awayScore.current}
+              </div>
+            ))
+            ) : (
+                <div className="no-events">There are no live events at the moment</div>
+            )}
+        </div>
+      </div>
+    );
+  }
+}

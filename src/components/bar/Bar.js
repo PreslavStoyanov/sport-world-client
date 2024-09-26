@@ -14,14 +14,23 @@ function Bar() {
             <Link to="/matches">Past Matches</Link>
           </li>
           <li>
-            <Link to="/live">Live Matches</Link>
+            <Link to="/football/live">Football</Link>
+          </li>
+          <li>
+            <Link to="/basketball/live">Basketball</Link>
+          </li>
+          <li>
+            <Link to="/tennis/live">Tennis</Link>
+          </li>
+          <li>
+            <Link to="/volleyball/live">Volleyball</Link>
           </li>
           {
-            decodedToken.role_id === 2 && (
-              <li>
-                <Link to="/createMatch">Create match</Link>
-              </li>
-            )}
+              decodedToken.role_id === 2 && (
+                  <li>
+                    <Link to="/createMatch">Create match</Link>
+                  </li>
+              )}
           <li>
             <Link to="/users">Profile</Link>
           </li>
